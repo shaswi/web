@@ -1,0 +1,204 @@
+/* Area Converter Specific Styles */
+
+.converter-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Card Styles for Converter Tables */
+.converter-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    transition: border-color 0.3s ease;
+}
+
+.converter-card:hover {
+    border-color: var(--primary);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--border);
+}
+
+.card-header h3 {
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-remove {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    padding: 0.5rem;
+}
+
+.btn-remove:hover {
+    color: var(--error);
+}
+
+/* Three Column Grid inside Converter Card */
+.unit-systems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.unit-column {
+    background: rgba(15, 23, 42, 0.3);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.system-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Input Groups */
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    flex: 1;
+}
+
+.input-group input {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem;
+    width: 100px;
+    text-align: right;
+    color: var(--text);
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* Composite Field Styling (R-A-P-D / B-K-D) */
+.composite-group {
+    margin-top: 1.5rem;
+}
+
+.composite-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.composite-group input {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    background: rgba(79, 70, 229, 0.05);
+    border-color: rgba(79, 70, 229, 0.2);
+}
+
+/* Sidebar Styles */
+.summary-sidebar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: sticky;
+    top: 80px;
+    /* max-height: calc(100vh - 120px); removed to show full content */
+    /* overflow-y: auto; removed */
+}
+
+.sidebar-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.summary-row span:last-child {
+    font-weight: 600;
+    font-family: monospace;
+}
+
+.add-btn-container {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--primary);
+}
+
+.add-btn-container:hover {
+    background: rgba(79, 70, 229, 0.05);
+    border-color: var(--primary);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .converter-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-sidebar {
+        position: static;
+        max-height: none;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .unit-systems-grid {
+        grid-template-columns: 1fr;
+    }
+}
