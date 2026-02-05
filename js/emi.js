@@ -28,6 +28,19 @@ class EmiCalculator {
         this.elm.calculateBtn.addEventListener('click', () => this.calculate());
         this.elm.exportBtn.addEventListener('click', () => this.exportToExcel());
 
+        // Real-time Calculation Listeners
+        ['input', 'change'].forEach(evt => {
+            this.elm.amount.addEventListener(evt, () => this.calculate());
+            this.elm.rate.addEventListener(evt, () => this.calculate());
+            this.elm.tenure.addEventListener(evt, () => this.calculate());
+        });
+
+        this.elm.tenureType.forEach(radio => {
+            radio.addEventListener('change', () => {
+                this.calculate();
+            });
+        });
+
         // Initial Calculation
         this.calculate();
     }
