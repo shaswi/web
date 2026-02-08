@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - ShaSWi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gallery-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            position: relative;
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 500px;
+            /* Fixed height for consistency */
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: #000;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fade 0.5s ease-in-out;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* Navigation buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+
+        .next {
+            right: 1rem;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 1rem;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Thumbnails / Dots */
+        .dots-container {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: var(--text-muted);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: var(--primary);
+        }
+
+        .caption {
+            text-align: center;
+            padding: 0.5rem;
+            color: var(--text);
+            font-style: italic;
+        }
+
+        #error-message {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 2rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="images/logo.png" alt="ShaSWi Logo" style="height: 40px;">
+                Sha<span>SWi</span></a>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="apps.html" class="nav-link">Apps</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+                <li><a href="reach-us.html" class="nav-link">Reach Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quick Access Bar -->
+    <div class="quick-access-bar">
+        <div class="container quick-access-container">
+            <span class="quick-access-label">Quick Apps:</span>
+            <a href="amount-converter.html" class="quick-access-link"><i class="fas fa-file-invoice-dollar"></i> Amount
+                to
+                Words</a>
+            <a href="area-converter.html" class="quick-access-link"><i class="fas fa-ruler-combined"></i> Area
+                Converter</a>
+            <a href="emi-calculator.html" class="quick-access-link"><i class="fas fa-calculator"></i> EMI Calculator</a>
+            <a href="geo-converter.html" class="quick-access-link"><i class="fas fa-globe"></i> Geo Converter</a>
+        </div>
+    </div>
+
+    <header class="section text-center" style="padding-bottom: 0;">
+        <div class="container">
+            <h1 class="section-title">Photo Gallery</h1>
+            <p class="section-subtitle">A collection of our moments and achievements.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="gallery-container" id="gallery-container">
+                <div id="slides-wrapper">
+                    <!-- Slides will be injected here -->
+                </div>
+
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+                <div class="caption" id="caption-text"></div>
+            </div>
+
+            <div class="dots-container" id="dots-wrapper">
+                <!-- Dots will be injected here -->
+            </div>
+
+            <div id="error-message">
+                <i class="fas fa-images fa-3x" style="margin-bottom: 1rem; color: var(--text-muted);"></i>
+                <p>No photos found in the <code>photo/</code> folder.</p>
+                <p style="font-size: 0.9rem;">Please add images named <code>1.jpg</code>, <code>2.jpg</code>, etc. (or
+                    <code>.png</code>).</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted);">supported by "Popular Megha Engineering
+                    Consultancy"</p>
+                &copy; 2026 ShaSWi. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+
+</html>
