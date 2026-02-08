@@ -225,12 +225,13 @@ h6 {
   background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
   opacity: 0.2;
   filter: blur(80px);
+  z-index: 1;
 }
 
 .hero-content {
   max-width: 800px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-title {
@@ -377,4 +378,110 @@ footer {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Quick Access Bar */
+.quick-access-bar {
+  background-color: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0;
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 73px;
+  /* Adjust based on navbar height */
+  z-index: 999;
+}
+
+.quick-access-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.quick-access-container::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-access-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.quick-access-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+
+.quick-access-link:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.quick-access-link i {
+  color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: sticky;
+    /* Ensure navbar stays sticky */
+  }
+
+  .quick-access-bar {
+    top: 60px;
+    /* Adjust for mobile navbar height if needed */
+    padding: 0.5rem 0;
+  }
+
+  .quick-access-container {
+    padding-bottom: 0.25rem;
+    /* Space for scrollbar if we decide to show it, or just breathing room */
+  }
+}
+
+/* Home Page Slideshow */
+#home-slideshow-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.home-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.home-slide.active {
+  opacity: 0.3;
+  /* Subtle background */
 }
